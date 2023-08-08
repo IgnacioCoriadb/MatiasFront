@@ -1,0 +1,24 @@
+.tittle{
+    color: #ffff;
+    font-size:1.7rem;
+    padding: 30px;
+    margin: 0px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.link{
+    font-size: 1.3rem !important;
+    letter-spacing: 0.0375rem; /*0.6px*/
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 0.75rem; /*12px*/
+    margin-left: 0.75rem; /*12px*/
+    color: #fff !important;
+    margin-top: 0.563rem;
+}
+
+
+
+ 
+  
