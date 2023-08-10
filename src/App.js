@@ -5,6 +5,7 @@ import NavBar from './Components/Navbar/Navbar';
 import Header from './Components/Header/Header';
 import Portfolio from './Components/Portfolio/Portfolio';
 import AboutMe from './Components/AboutMe/AboutMe';
+import Contact from './Components/Contact/Contact';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Header></Header>
         <Portfolio></Portfolio>
         <AboutMe></AboutMe>
+        <Contact></Contact>
       </header>
     </div>
   );
