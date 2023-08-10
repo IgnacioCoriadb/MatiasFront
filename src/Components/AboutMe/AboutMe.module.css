@@ -1,0 +1,58 @@
+.container{
+    margin-top:0px !important;
+   }
+  
+.imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    margin: 50px;
+    padding: 0;
+}
+  
+.aboutText {
+    font-size: 22px;
+    margin-top: 22px;
+}
+  
+@media (max-width: 1400px) {
+    .aboutText {
+        font-size: 18.6px;
+        margin-top: 8px;
+    }
+    .container{
+        margin-top:0px !important;
+    }
+    .aboutMe{
+        margin-top:40px
+    }
+}
+  
+@media (max-width: 1200px) {
+    .aboutText {
+        font-size: 15.5px;
+        margin-top: 18px;
+    }
+    .container{
+        margin-top:0px !important;
+    }
+}
+  
+@media (max-width: 991px) {
+    .aboutText {
+        font-size: 13px;
+        margin-top: 20px;
+    }
+    .imageContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80%;
+        margin: 0px;
+        padding: 0;
+    }
+    .container{
+       margin-top:0px !important;
+    }
+}
