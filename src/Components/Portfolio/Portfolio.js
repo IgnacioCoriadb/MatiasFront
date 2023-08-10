@@ -4,13 +4,27 @@ import { useEffect ,useState} from "react";
 import Image from "./AllImage";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch    } from '@fortawesome/free-solid-svg-icons';
-// import Paginado from "../Pagination/pagination";
+import Paginado from "../Pagination/Pagination";
 import styles from "./Portfolio.module.css"
 
 const Portfolio = ({isAuthenticated})=>{
     const [imageFolder, setImageFolder] = useState(null);
     const [nameFolder, setNameFolder] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage= 6;
+    
+    const totalPageCount  = imageFolder ? Math.ceil(imageFolder.length / itemsPerPage):"";
+
+    const handlePageChange = (pageNumber) => {
+      setCurrentPage(pageNumber);
+    };
+
+    const indexOfLastElement = currentPage * itemsPerPage;
+    const indexOfFirstElement = indexOfLastElement - itemsPerPage;
+    const currentPageItemCount  =imageFolder ? imageFolder.slice(indexOfFirstElement, indexOfLastElement):"";
+
 
     const fetchData = async () => {
       try {
@@ -37,9 +51,10 @@ const Portfolio = ({isAuthenticated})=>{
     <div className="container">
     <h1 className="text-center mt-5">Portfolio</h1>
     <div className={`row mt-4`}>
-      {imageFolder ? imageFolder.map((imagen, index) => (
+      
+      {currentPageItemCount  ? currentPageItemCount.map((imagen, index) => (
         <div key={index} className={`col-md-4 mb-4`}>
-          <div className="thumbnail">
+          <div className={"thumbnail"}>
       
     
             <img
@@ -57,7 +72,11 @@ const Portfolio = ({isAuthenticated})=>{
     {nameFolder !== null && (
     <Image folder={nameFolder} modalOpen={modalOpen} setModalOpen={setModalOpen} />
     )}
- 
+  <Paginado
+        currentPage={currentPage}
+        totalPages={totalPageCount}
+        onPageChange={handlePageChange}
+      /> 
   </div>
  
     )
