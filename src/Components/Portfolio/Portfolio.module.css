@@ -1,0 +1,8 @@
+/* Estilo para las imágenes en la galería */
+.galleryThumbnail {
+    width: 400px;
+    max-height: 600px;
+    object-fit: cover;
+    margin-bottom: 20px; /* Margen inferior para separar las imágenes */
+    margin-right: 10px; /* Margen derecho para separar las imágenes horizontalmente */
+}
