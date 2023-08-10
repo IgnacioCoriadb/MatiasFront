@@ -6,7 +6,7 @@ import Header from './Components/Header/Header';
 import Portfolio from './Components/Portfolio/Portfolio';
 import AboutMe from './Components/AboutMe/AboutMe';
 import Contact from './Components/Contact/Contact';
-
+import Footer from "./Components/Footer/Footer";
 function App() {
   return (
     <div className="App">
@@ -16,6 +16,7 @@ function App() {
         <Portfolio></Portfolio>
         <AboutMe></AboutMe>
         <Contact></Contact>
+        <Footer></Footer>
       </header>
     </div>
   );
