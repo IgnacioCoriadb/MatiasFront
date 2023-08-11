@@ -100,16 +100,16 @@ const Contact = ()=>{
         setFormData({ ...formData, [name]: value });
     }
     return (
-        <div class="container">
-        <div class="row justify-content-center contact">
-            <div class="col-md-8">
-                <div class="well well-sm">
-                    <form class="form-horizontal"  onSubmit={handleSubmit} method="post">
+        <div className="container">
+        <div className="row justify-content-center contact">
+            <div className="col-md-8">
+                <div className="well well-sm">
+                    <form className="form-horizontal"  onSubmit={handleSubmit} method="post">
                         <fieldset>
-                            <legend class={`text-center  ${style['bigicon']}`}>Contact us</legend>
-                            <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class={`fa fa-user ${style['bigicon']}`}></i></span>
-                                <div class="col-md-10 offset-md-1">
+                            <legend className={`text-center  ${style['bigicon']}`}>Contact us</legend>
+                            <div className="form-group">
+                                <span className="col-md-1 col-md-offset-2 text-center"><i className={`fa fa-user ${style['bigicon']}`}></i></span>
+                                <div className="col-md-10 offset-md-1">
                                     <input 
                                         id="fname"
                                         name="name"
@@ -117,13 +117,13 @@ const Contact = ()=>{
                                         placeholder="First Name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        class="form-control mb-3"
+                                        className="form-control mb-3"
                                     />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class={`fa fa-user ${style['bigicon']}`}></i></span>
-                                <div class="col-md-10 offset-md-1">
+                            <div className="form-group">
+                                <span className="col-md-1 col-md-offset-2 text-center"><i className={`fa fa-user ${style['bigicon']}`}></i></span>
+                                <div className="col-md-10 offset-md-1">
                                     <input 
                                         id="lname"
                                         name="lastname"
@@ -131,13 +131,13 @@ const Contact = ()=>{
                                         placeholder="Last Name"
                                         value={formData.lastname}
                                         onChange={handleChange}
-                                        class="form-control mb-3"
+                                        className="form-control mb-3"
                                     />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class={`fa fa-user ${style['bigicon']}`}></i></span>
-                                <div class="col-md-10 offset-md-1">
+                            <div className="form-group">
+                                <span className="col-md-1 col-md-offset-2 text-center"><i className={`fa fa-user ${style['bigicon']}`}></i></span>
+                                <div className="col-md-10 offset-md-1">
                                     <input 
                                         id="email"
                                         name="email"
@@ -145,15 +145,15 @@ const Contact = ()=>{
                                         placeholder="Email Address"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        class="form-control mb-3"
+                                        className="form-control mb-3"
                                     />
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <span class="col-md-1 col-md-offset-2 text-center"><i class={`fa fa-user ${style['bigicon']}`}></i></span>
-                                <div class="col-md-10 offset-md-1">
+                            <div className="form-group">
+                                <span className="col-md-1 col-md-offset-2 text-center"><i className={`fa fa-user ${style['bigicon']}`}></i></span>
+                                <div className="col-md-10 offset-md-1">
                                     <textarea 
-                                        class="form-control mb-3"
+                                        className="form-control mb-3"
                                         id="message"
                                         name="message"
                                         value={formData.message}
@@ -163,9 +163,9 @@ const Contact = ()=>{
                                     </textarea>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-primary bg-dark">Submit</button>
+                            <div className="form-group">
+                                <div className="col-md-12 text-center">
+                                    <button type="submit" className="btn btn-primary bg-dark">Submit</button>
                                 </div>
                             </div>
                         </fieldset>
