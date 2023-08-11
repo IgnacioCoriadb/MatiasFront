@@ -34,7 +34,14 @@ useEffect(() => {
       <header className="App-header">
       
       {isAuthenticated && token ?(
-              <Folder isAuthenticated={isAuthenticated}></Folder> 
+        <div>
+             <Folder isAuthenticated={isAuthenticated}></Folder> 
+             <Router>
+        <Routes>
+          <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated}></Login>} />
+        </Routes>
+      </Router>        </div>
+           
       ):(
         <div>
         <NavBar></NavBar>
