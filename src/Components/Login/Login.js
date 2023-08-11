@@ -2,7 +2,7 @@ import {useEffect } from "react";
 import axios from "axios";
 import Swal from 'sweetalert2';
 
-const Login = () => {
+const Login = ({setIsAuthenticated,isAuthenticated}) => {
     const showLoginDialog = () => {
         Swal.fire({
             title: 'Iniciar sesión',
@@ -36,6 +36,7 @@ const loginUser = async (username, password) => {
         const token = response.data.token;
         if (token) {
             localStorage.setItem('token', token);
+            setIsAuthenticated(true);
             Swal.fire({
                 title: '¡Inicio de sesión exitoso!',
                 text: 'Has ingresado correctamente.',
@@ -66,14 +67,16 @@ const loginUser = async (username, password) => {
         }
     }
 }
-    
+
+
+  
 useEffect(() => {
     showLoginDialog();
 },[]);
 
     return (
         <div>
-
+           
         </div>
     )
 }
