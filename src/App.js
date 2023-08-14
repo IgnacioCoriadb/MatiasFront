@@ -40,7 +40,10 @@ useEffect(() => {
         <Routes>
           <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated}></Login>} />
         </Routes>
-      </Router>        </div>
+      </Router>        
+      <Portfolio></Portfolio>
+
+      </div>
            
       ):(
         <div>
