@@ -18,3 +18,17 @@
     display: flex;
     flex-wrap: wrap;
   }
+
+  .box_new_folder{
+    width: 300px; /* Ancho de la caja */
+    height: 100px; /* Altura de la caja */
+    border: 1px solid #ccc; /* Borde de la caja */
+    margin: 5px; /* Margen entre las cajas */
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    background-color: #008f39;
+    color: #ffff;
+  }
