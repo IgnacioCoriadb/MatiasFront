@@ -57,7 +57,6 @@ const Folder = ({isAuthenticated}) => {
         }catch(error) {
             // Ocultar mensaje de carga en caso de error
             Swal.hideLoading();
-                // Handle the error and display the error message from the server if available
             const errorMessage = error.response?.data || "Error al crear carpeta";
             // Mostrar alerta de error con el mensaje del servidor o el mensaje predeterminado
             Swal.fire({
@@ -69,30 +68,64 @@ const Folder = ({isAuthenticated}) => {
             });
         }
     }
-
-useEffect(()=>{
-    if(isAuthenticated){
-        allFolders();
-    }
-},[isAuthenticated,folders])
-
-
-return (
-    <div className="container">
-        <h1>Folder</h1>
-        <ul className={`${style['square-boxes']} d-flex justify-content-center" key="key" `}>                  
-            {
-                isAuthenticated && folders ? folders.map((foldername,key) => (
-                    <div key={key}> 
-                        <li className={style.box} key={foldername.id}>{foldername.name}</li>
-                    </div>
-                )
-                ):""
+    const deleteFolder =async (idDb)=>{
+        try{
+            const result = await Swal.fire({
+                title: '¿Estás seguro?',
+                text: 'Esta acción eliminará la carpeta permanentemente.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: 'Cancelar',
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+              });
+            if(result.isConfirmed){
+                const deleteFolder = await axios.delete(`http://localhost:3001/folders/deleteFolder/${idDb}`,{
+                    headers: {
+                        'Content-Type': 'application/json', 
+                        'Authorization': `Bearer ${token}`, 
+                      },
+                });
+                if(deleteFolder){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: "Carpeta eliminada",
+                        showConfirmButton: false,
+                        timer: 1500
+                        });
+                }
             }
-            <li className={`${style['box_new_folder']}`} key="-1" onClick={newFolder}>Nueva Carpeta</li>
-       </ul>
-    </div>
-  );
+        }catch(err) {
+            console.log(err)
+        }
+    }
+    
+    useEffect(()=>{
+        if(isAuthenticated){
+            allFolders();
+        }
+    },[isAuthenticated,folders])
+
+    return (
+        <div className="container">
+            <h1>Folder</h1>
+            <ul className={`${style['square-boxes']} d-flex justify-content-center" key="key" `}>                  
+                {
+                    isAuthenticated && folders ? folders.map((foldername,key) => (
+                        <div key={key}> 
+                            <li className={style.box} key={foldername.id}>{foldername.name}</li>
+                            <button type="button" className="btn  btn-danger mt-2" onClick={()=>deleteFolder(foldername.id)}>Eliminar</button>
+
+                        </div>
+                    )
+                    ):""
+                }
+                <li className={`${style['box_new_folder']}`} key="-1" onClick={newFolder}>Nueva Carpeta</li>
+        </ul>
+        </div>
+    );
 }
 
 export default Folder;
