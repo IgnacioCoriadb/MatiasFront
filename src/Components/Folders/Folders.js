@@ -2,10 +2,18 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import style from "./Folders.module.css";
 import Swal from 'sweetalert2';
+import UploadImage from "../Files/UploadFile";
 
 const Folder = ({isAuthenticated}) => {
     const [folders, setFolders] = useState([]);
     const token = localStorage.getItem('token');
+    const [folderName, setFolderName] = useState("");
+    const [modal, setModal] = useState(false);
+
+    const openModal =()=>{
+            setModal(true);
+        
+    }
 
     const allFolders = async()=>{
         const token = localStorage.getItem('token');
@@ -67,7 +75,7 @@ const Folder = ({isAuthenticated}) => {
                 showConfirmButton: true
             });
         }
-    }
+    } 
     const deleteFolder =async (idDb)=>{
         try{
             const result = await Swal.fire({
@@ -101,6 +109,10 @@ const Folder = ({isAuthenticated}) => {
             console.log(err)
         }
     }
+
+    const nameFolder = (name)=>{
+        setFolderName(name)
+    }
     
     useEffect(()=>{
         if(isAuthenticated){
@@ -115,7 +127,8 @@ const Folder = ({isAuthenticated}) => {
                 {
                     isAuthenticated && folders ? folders.map((foldername,key) => (
                         <div key={key}> 
-                            <li className={style.box} key={foldername.id}>{foldername.name}</li>
+
+                        <li className={style.box} key={foldername.id} onClick={() => { nameFolder(foldername.name); openModal(); }}>{foldername.name}</li>
                             <button type="button" className="btn  btn-danger mt-2" onClick={()=>deleteFolder(foldername.id)}>Eliminar</button>
 
                         </div>
@@ -124,6 +137,7 @@ const Folder = ({isAuthenticated}) => {
                 }
                 <li className={`${style['box_new_folder']}`} key="-1" onClick={newFolder}>Nueva Carpeta</li>
         </ul>
+                <UploadImage folderName={folderName} modal={modal}></UploadImage>
         </div>
     );
 }
