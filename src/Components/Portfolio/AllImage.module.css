@@ -28,7 +28,7 @@
 }
 
 .image-modal-margin {
-  margin-top: 60px; 
+  margin-top: 50px; 
 }
 
 .close-button {
@@ -40,3 +40,6 @@
   margin-left: auto; 
 }
 
+.title{
+  color: #fff;
+}
