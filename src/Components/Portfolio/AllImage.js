@@ -12,14 +12,12 @@ const Image =({folder,modalOpen,setModalOpen})=>{
 
     const allImages = async ()=>{
         const result = await axios.get(`http://localhost:3001/images/allImage/${folder}`);
-        // console.log(result);
         const imageUrls = result.data.map(url => ({
             original: url.url,
             folderName: url.folderName
         }));
         setImage(imageUrls);
     }
-    console.log(image)
     
     const closeModal = () => {
         setModalOpen(false);
@@ -48,8 +46,10 @@ const Image =({folder,modalOpen,setModalOpen})=>{
                     <button className={styles['close-button']} onClick={closeModal} style={{ zIndex: 999 }}>
                         <FontAwesomeIcon icon={faTimes} />
                     </button>
-                        <h1 className={styles['title']}>{image[0].folderName}</h1>                        
-                        {image.length > 0 && <ImageGallery items={image} />}
+                    {
+                        image[0]?.folderName && <h1 className={styles['title']}>{image[0].folderName}</h1>
+                    }                      
+                    {image.length > 0 && <ImageGallery items={image} />}
                     </div>
 
                 </div>
