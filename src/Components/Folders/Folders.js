@@ -137,7 +137,9 @@ const Folder = ({isAuthenticated}) => {
                 }
                 <li className={`${style['box_new_folder']}`} key="-1" onClick={newFolder}>Nueva Carpeta</li>
         </ul>
-                <UploadImage folderName={folderName} modal={modal}></UploadImage>
+            {isAuthenticated ?
+                <UploadImage folderName={folderName} modal={modal}></UploadImage> : null
+            }
         </div>
     );
 }
