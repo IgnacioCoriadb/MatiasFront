@@ -2,9 +2,7 @@
 import axios from "axios";
 import { useEffect ,useState} from "react";
 import Image from "./AllImage";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleNotch    } from '@fortawesome/free-solid-svg-icons';
-import Paginado from "../Pagination/Pagination";
+import Paginate from "../Pagination/Pagination";
 import styles from "./Portfolio.module.css"
 
 const Portfolio = ({isAuthenticated,setNavBarVisible})=>{
@@ -49,16 +47,14 @@ const Portfolio = ({isAuthenticated,setNavBarVisible})=>{
         handleImageClick(image);
         setModalOpen(true);
       };
+
   return (
     <div className="container">
     <h1 className="text-center mt-5">Portfolio</h1>
-    <div className={`row mt-4`}>
-      
+    <div className={`row mt-4`}>  
       {currentPageItemCount  ? currentPageItemCount.map((imagen, index) => (
         <div key={index} className={`col-md-4 mb-4`}>
           <div className={"thumbnail"}>
-      
-    
             <img
               src={imagen.url}
               alt={`Imagen ${index + 1}`}
@@ -72,13 +68,9 @@ const Portfolio = ({isAuthenticated,setNavBarVisible})=>{
       )) : "Cargando"}
     </div>
     {nameFolder !== null && (
-      <div>
-           {/* {console.log("abriendo modal")} */}
-    <Image folder={nameFolder} modalOpen={modalOpen} setModalOpen={setModalOpen} setNavBarVisible={setNavBarVisible} />
-      </div>
-   
+      <Image folder={nameFolder} modalOpen={modalOpen} setModalOpen={setModalOpen} setNavBarVisible={setNavBarVisible} />   
     )}
-  <Paginado
+  <Paginate
         currentPage={currentPage}
         totalPages={totalPageCount}
         onPageChange={handlePageChange}

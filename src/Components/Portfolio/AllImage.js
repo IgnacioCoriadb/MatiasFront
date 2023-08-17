@@ -65,10 +65,8 @@ const Image = ({folder,modalOpen,setModalOpen,setNavBarVisible}) => {
                     console.error("Respuesta del servidor:", error.response.data);
                     console.error("Código de estado:", error.response.status);
                 } else if (error.request) {
-                    // No se recibió respuesta del servidor
                     console.error("No se recibió respuesta del servidor:", error.request);
                 } else {
-                    // Ocurrió un error durante la configuración de la solicitud
                     console.error("Error durante la configuración de la solicitud:", error.message);
                 }
                 Swal.fire({
