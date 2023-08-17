@@ -1,13 +1,12 @@
-import {useEffect } from "react";
+import {useEffect} from "react";
 import axios from "axios";
 import Swal from 'sweetalert2';
-import { useNavigate } from "react-router-dom";
 
 const Login = ({setIsAuthenticated,isAuthenticated}) => {
-    const navigate = useNavigate();
+    const token = localStorage.getItem('token');
 
     const showLoginDialog = () => {
-        Swal.fire({
+        const swalModal = Swal.fire({
             title: 'Iniciar sesión',
             html: `<input type="text" id="login" class="swal2-input" placeholder="Username">
                    <input type="password" id="password" class="swal2-input" placeholder="Password">`,
@@ -24,8 +23,12 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
             },
             showCloseButton: true,
             allowOutsideClick: true,
-        }).then((result) => {
-            if (result.isConfirmed) {
+        });
+    
+        swalModal.then((result) => {
+            if (!result.isConfirmed) {
+                window.location.href = "/";
+            } else {
                 const username = result.value.login;
                 const password = result.value.password;
                 loginUser(username, password);
@@ -38,14 +41,23 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
             const response = await axios.post("http://localhost:3001/login", loginData);
             const token = response.data.token;
             if (token) {
+                const { exp } = JSON.parse(atob(token.split('.')[1])); // Decodificar el token
+                if (Date.now() < exp * 1000) {
+                    // Configurar un temporizador para eliminar el token cuando expire
+                    const expiresIn = exp * 1000 - Date.now();
+                    setTimeout(() => {
+                        handleLogoutTime();
+                    }, Math.min(expiresIn, 20000));
+                  } 
+
                 localStorage.setItem('token', token);
                 setIsAuthenticated(true);
                 Swal.fire({
                     title: '¡Inicio de sesión exitoso!',
                     text: 'Has ingresado correctamente.',
                     icon: 'success'
-            });
-            } else {
+                });
+            }else{
                 Swal.fire({
                     title: 'Error de inicio de sesión',
                     text: 'Usuario o contraseña incorrectos.',
@@ -71,47 +83,38 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
         }
     }
 
-    const handleLogout = async () => {
-    const confirmed = await Swal.fire({
-        title: "¿Estás seguro?",
-        text: "¿Quieres cerrar sesión?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Sí, cerrar sesión",
-        cancelButtonText: "Cancelar",
-    });
-
-  if (confirmed.isConfirmed) {
-    // Realiza la llamada a la API para cerrar sesión
-    const token = localStorage.getItem("token");
-    await axios.post(
-      "http://localhost:3001/logout",
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    // Elimina el token y redirige al inicio de sesión
-    localStorage.removeItem("token");
-    setIsAuthenticated(false)
-    navigate("/");
-  }
-};
+    const handleLogoutTime = async () => {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Sesión Expirada',
+            text: 'Tu sesión ha expirado. Por favor, vuelve a iniciar sesión.',
+            confirmButtonText: 'Iniciar Sesión',
+            allowOutsideClick: false,
+        });
+  
+        const token = localStorage.getItem("token");
+        await axios.post(
+        "http://localhost:3001/logout",
+        {},
+        {
+            headers: {
+            Authorization: `Bearer ${token}`,
+            },
+        }
+        );
+        localStorage.removeItem("token");
+        setIsAuthenticated(false)  
+    };
 
 
-useEffect(() => {
-    if(!isAuthenticated){
-        showLoginDialog();
-    }
-},[]);
+    useEffect(() => {
+        if(!isAuthenticated && !token) {
+            showLoginDialog();
+        }
+    },[isAuthenticated,token]);
 
 return (
     <div>
-        <button onClick={handleLogout} className="btn btn-danger">Cerrar Sesión</button>
     </div>
     )
 }
