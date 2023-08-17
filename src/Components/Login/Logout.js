@@ -2,7 +2,6 @@ import axios from "axios";
 import Swal from 'sweetalert2';
 
 const Logout = ()=>{
-    
     const handleLogout = async () => {
         const confirmed = await Swal.fire({
             title: "¿Estás seguro?",
