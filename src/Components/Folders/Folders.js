@@ -11,7 +11,7 @@ const Folder = ({isAuthenticated}) => {
     const [modal, setModal] = useState(false);
 
     const openModal =()=>{
-            setModal(true);
+        setModal(true);
     }
 
     const allFolders = async()=>{
@@ -40,7 +40,7 @@ const Folder = ({isAuthenticated}) => {
         })
         if (subfolder) {
             insertNewFolder(subfolder);
-          }
+        }
     }
     
     const insertNewFolder =async (subfolder)=>{
