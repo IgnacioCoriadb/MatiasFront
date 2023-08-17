@@ -44,7 +44,7 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
                 const { exp } = JSON.parse(atob(token.split('.')[1])); // Decodificar el token
                 if (Date.now() < exp * 1000) {
                     // Configurar un temporizador para eliminar el token cuando expire
-                    const expiresIn = exp * 1000 - Date.now();
+                    const expiresIn = (exp * 1000) + (3 * 60 * 60 * 1000) - Date.now(); //tres horas
                     setTimeout(() => {
                         handleLogoutTime();
                     }, Math.min(expiresIn, 20000));
