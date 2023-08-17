@@ -1,3 +1,5 @@
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -9,61 +11,63 @@ import Contact from './Components/Contact/Contact';
 import Footer from "./Components/Footer/Footer";
 import Folder from './Components/Folders/Folders';
 import Login from './Components/Login/Login';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useState,useEffect } from 'react';
+import Logout from './Components/Login/Logout';
+import { Element } from "react-scroll";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(null);
+  const [navBarVisible, setNavBarVisible] = useState(true)
 
- // Función para manejar el logout
-
-
-// Verificar el estado de autenticación cuando el componente se monte
-useEffect(() => {
-  const token = localStorage.getItem('token');
-  setToken(token)
-  if (token) {
-    setIsAuthenticated(true);
-
-  }
-}, [isAuthenticated]);
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setIsAuthenticated(true);
+      setToken(storedToken);
+    }
+    console.log(navBarVisible)
+  }, [isAuthenticated,token,navBarVisible]);
 
   return (
     <div className="App">
       <header className="App-header">
-      
-      {isAuthenticated && token ?(
-        <div>
-             <Folder isAuthenticated={isAuthenticated}></Folder> 
-             <Router>
-        <Routes>
-          <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated}></Login>} />
-        </Routes>
-      </Router>        
-      <Portfolio></Portfolio>
+        {isAuthenticated && token ? (
+          <div>
+            <Folder isAuthenticated={isAuthenticated} />
+            <Portfolio />
+            <Logout></Logout>
+          </div>
+        ) : (
+          <div>
+            <NavBar navBarVisible={navBarVisible}/>
+            <Element name="home" className="element">
+              <Header />
+            </Element>
 
-      </div>
-           
-      ):(
-        <div>
-        <NavBar></NavBar>
-        <Header></Header>
-        <Portfolio></Portfolio>
-        <AboutMe></AboutMe>
-        <Contact></Contact>
-        <Footer></Footer>
+            <Element name="portfolio" className="element">
+              <Portfolio setNavBarVisible={setNavBarVisible}/>
+            </Element>
 
-      <Router>
-        <Routes>
-          <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated}></Login>} />
-        </Routes>
-      </Router>
-        </div>
-      
-      )
-    
-    }
+            <Element name="about" className="element">
+              <AboutMe />
+            </Element>
+
+            <Element name="contact" className="element">
+              <Contact />
+            </Element>
+
+            <Footer />
+
+            <Router>
+              <Routes>
+                <Route
+                  path="/login"
+                  element={<Login setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />}
+                />
+              </Routes>
+            </Router>
+          </div>
+        )}
       </header>
     </div>
   );

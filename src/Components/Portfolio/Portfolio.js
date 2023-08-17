@@ -7,7 +7,7 @@ import { faCircleNotch    } from '@fortawesome/free-solid-svg-icons';
 import Paginado from "../Pagination/Pagination";
 import styles from "./Portfolio.module.css"
 
-const Portfolio = ({isAuthenticated})=>{
+const Portfolio = ({isAuthenticated,setNavBarVisible})=>{
     const [imageFolder, setImageFolder] = useState(null);
     const [nameFolder, setNameFolder] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
@@ -41,6 +41,8 @@ const Portfolio = ({isAuthenticated})=>{
   
     const handleImageClick = (image) => {
       setNameFolder(image);
+      setModalOpen(true);
+      setNavBarVisible(false)
     }
 
     const handleFunctionClick = (image) => {
@@ -70,7 +72,11 @@ const Portfolio = ({isAuthenticated})=>{
       )) : "Cargando"}
     </div>
     {nameFolder !== null && (
-    <Image folder={nameFolder} modalOpen={modalOpen} setModalOpen={setModalOpen} />
+      <div>
+           {/* {console.log("abriendo modal")} */}
+    <Image folder={nameFolder} modalOpen={modalOpen} setModalOpen={setModalOpen} setNavBarVisible={setNavBarVisible} />
+      </div>
+   
     )}
   <Paginado
         currentPage={currentPage}

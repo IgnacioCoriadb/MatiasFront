@@ -9,9 +9,9 @@ const Footer = ()=>{
             <div className={`${style['footer-basic']} bg-dark`}>
             <footer>
                 <div className={style['social']}>
-                    <a href="#"><i className={`bi bi-instagram ${style['instagram']}`}></i></a>
-                    <a href="#"><i className="bi bi-tiktok"></i></a>
-                    <a href="#"><i className="bi bi-envelope"></i></a>
+                    <a href="https://instagram.com/longoperrig_art?igshid=MzRlODBiNWFlZA=="  target="_blank" rel="noopener noreferrer"><i className={`bi bi-instagram ${style['instagram']}`}></i></a>
+                    <a href="https://www.tiktok.com/@longoperrigart" target="_blank" rel="noopener noreferrer"><i className="bi bi-tiktok"></i></a>
+                    <a href="mailto:matlongx@gmail.com" target="_blank" rel="noopener noreferrer"><i className="bi bi-envelope"></i></a>
                 </div>
                 <ul className="list-inline">
                     <li className="list-inline-item">
@@ -21,7 +21,7 @@ const Footer = ()=>{
                             smooth={true}
                             offset={-70}
                             duration={500}
-                            className="nav-link"
+                            className={style['hand-cursor-link']}
                         >
                             Home
                         </Link>
@@ -33,7 +33,7 @@ const Footer = ()=>{
                             smooth={true}
                             offset={-70}
                             duration={500}
-                            className="nav-link"
+                            className={style['hand-cursor-link']}
                         >
                         About
                         </Link>
@@ -45,7 +45,7 @@ const Footer = ()=>{
                             smooth={true}
                             offset={-70}
                             duration={500}
-                            className="nav-link"
+                            className={style['hand-cursor-link']}
                         >
                         Portfolio
                         </Link>
@@ -57,7 +57,7 @@ const Footer = ()=>{
                             smooth={true}
                             offset={-70}
                             duration={500}
-                            className="nav-link"
+                            className={style['hand-cursor-link']}
                         >
                         Contact
                         </Link>

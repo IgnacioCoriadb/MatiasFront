@@ -7,11 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
-const Image =({folder,modalOpen,setModalOpen})=>{
+const Image = ({folder,modalOpen,setModalOpen,setNavBarVisible}) => {
     const [image, setImage] = useState([]);
     const [imageOpened, setImageOpened] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
     const token = localStorage.getItem('token');
+    const [currentImage, setCurrentImage] = useState(null);
 
     const allImages = async ()=>{
         const result = await axios.get(`http://localhost:3001/images/allImage/${folder}`);
@@ -25,10 +26,13 @@ const Image =({folder,modalOpen,setModalOpen})=>{
     
     const closeModal = () => {
         setModalOpen(false);
+    setImageOpened(false); 
+    setCurrentImage(null);
+    setNavBarVisible(true);
     };
     
     const handleBackgroundClick = (e) => {
-        if (e.target.classList.contains(styles['image-modal'])) {
+    if (!e.target.closest(`.${styles['image-modal-content']}`)) {
             setImageOpened(false); 
             closeModal();
         }
@@ -82,39 +86,38 @@ const Image =({folder,modalOpen,setModalOpen})=>{
         setCurrentIndex(index);
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         allImages();
-        setImageOpened(true); 
-        setModalOpen(false);
-        console.log(currentIndex)
-    },[folder])
-
+        if (imageOpened) {
+            if (currentIndex >= 0 && currentIndex < image.length) {
+                setCurrentIndex(currentIndex); 
+            }
+        }
+    }, [folder, imageOpened, currentIndex]);
     return  (
         <>
-          {modalOpen && (
+        {modalOpen && (
             <div className={styles['image-modal']} onClick={handleBackgroundClick}>
                 <div className={`${styles['image-modal-margin']} ${token ? styles['logged-in'] : styles['logged-out']}`}>
                     <div className={styles['image-modal-content']}>
-                    <button className={styles['close-button']} onClick={closeModal} style={{ zIndex: 999 }}>
-                        <FontAwesomeIcon icon={faTimes} />
-                    </button>
-                        {image.length > 0 && (
-                                <>
-                                    <h1 className={styles['title']}>{image[currentIndex].folderName}</h1>
-                                    {token && (
-                                        <button  className="btn btn-danger mt-2" onClick={() => deleteImage(image[currentIndex].id)}>Eliminar</button>
-                                    )}
-                                    <ImageGallery   items={image}
-                                        currentIndex={currentIndex}
-                                        onSlide={handleSlide} />
-                                </>
-                            )}
+                        <button className={`${styles['close-button']} ${styles['close-button-top-right']}`} onClick={closeModal}>
+                            <FontAwesomeIcon icon={faTimes} />
+                        </button>
+                        {image.length > 0 && currentIndex >= 0 && currentIndex < image.length && (
+                            <>
+                                <h1 className={styles['title']}>{image[currentIndex].folderName}</h1>
+                                {token && (
+                                    <button className="btn btn-danger mt-2" onClick={() => deleteImage(image[currentIndex].id)}>Eliminar</button>
+                                )}
+                                <ImageGallery items={image} currentIndex={currentIndex} onSlide={handleSlide} />
+                            </>
+                        )}
                     </div>
                 </div>
             </div>
         )}
     </>
-    )
+    );
 }
 
 export default Image;

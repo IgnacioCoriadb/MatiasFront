@@ -12,7 +12,6 @@ const Folder = ({isAuthenticated}) => {
 
     const openModal =()=>{
             setModal(true);
-        
     }
 
     const allFolders = async()=>{
@@ -63,10 +62,8 @@ const Folder = ({isAuthenticated}) => {
             timer: 1500
             });
         }catch(error) {
-            // Ocultar mensaje de carga en caso de error
             Swal.hideLoading();
             const errorMessage = error.response?.data || "Error al crear carpeta";
-            // Mostrar alerta de error con el mensaje del servidor o el mensaje predeterminado
             Swal.fire({
                 position: 'center',
                 icon: 'error',
@@ -115,10 +112,10 @@ const Folder = ({isAuthenticated}) => {
     }
     
     useEffect(()=>{
-        if(isAuthenticated){
+        if(isAuthenticated && token){
             allFolders();
         }
-    },[isAuthenticated,folders])
+    },[isAuthenticated,folders,token])
 
     return (
         <div className="container">
@@ -129,6 +126,7 @@ const Folder = ({isAuthenticated}) => {
                         <div key={key}> 
 
                         <li className={style.box} key={foldername.id} onClick={() => { nameFolder(foldername.name); openModal(); }}>{foldername.name}</li>
+                        {}
                             <button type="button" className="btn  btn-danger mt-2" onClick={()=>deleteFolder(foldername.id)}>Eliminar</button>
 
                         </div>

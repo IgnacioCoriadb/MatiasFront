@@ -15,25 +15,22 @@ const Logout = ()=>{
             cancelButtonText: "Cancelar",
         });
     
-      if (confirmed.isConfirmed) {
-        const token = localStorage.getItem("token");
-        await axios.post(
-          "http://localhost:3001/logout",
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        localStorage.removeItem("token");
-        window.location.href = "/";
-
-    }
-};
-
-   
-        
+        if (confirmed.isConfirmed) {
+            const token = localStorage.getItem("token");
+            await axios.post(
+            "http://localhost:3001/logout",
+            {},
+            {
+                headers: {
+                Authorization: `Bearer ${token}`,
+                },
+            }
+            );
+            localStorage.removeItem("token");
+            window.location.href = "/";
+        }
+    };
+ 
     return(
         <div>
             <button onClick={handleLogout} className="btn btn-danger">Cerrar Sesión</button>

@@ -40,17 +40,28 @@
 .logged-out .image-modal-margin {
   margin-top: 20px; 
 }
+.image-modal-margin {
+  margin-top: 30px; 
+}
+
+
+.title{
+  margin-top: 0px;
+  color: #fff;
+}
+
+.close-button-top-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+}
 
 .close-button {
   background: none;
   border: none;
-  font-size: 20px;
+  color: #ffff; 
+  font-size: 30px;
   cursor: pointer;
-  color: #fff; 
-  margin-left: auto; 
-}
-
-.title{
-  margin-top: 45px;
-  color: #fff;
+  transition: color 0.2s;
 }

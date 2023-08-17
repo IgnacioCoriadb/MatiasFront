@@ -59,3 +59,9 @@
     text-align: center;
     color:#ffff;
 }
+.hand-cursor-link {
+    cursor: pointer;
+    position: relative;
+  }
+  
+ 

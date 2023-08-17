@@ -84,12 +84,19 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
     }
 
     const handleLogoutTime = async () => {
-        Swal.fire({
+       await Swal.fire({
             icon: 'warning',
             title: 'Sesión Expirada',
             text: 'Tu sesión ha expirado. Por favor, vuelve a iniciar sesión.',
+            confirmButtonColor: "#DD6B55",
             confirmButtonText: 'Iniciar Sesión',
             allowOutsideClick: false,
+        }).then((result) => {
+            if (!result.isConfirmed) {
+                window.location.href = "/";
+            } else {
+                showLoginDialog();
+            }
         });
   
         const token = localStorage.getItem("token");
