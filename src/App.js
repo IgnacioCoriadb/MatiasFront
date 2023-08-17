@@ -25,7 +25,6 @@ function App() {
       setIsAuthenticated(true);
       setToken(storedToken);
     }
-    console.log(navBarVisible)
   }, [isAuthenticated,token,navBarVisible]);
 
   return (
@@ -56,8 +55,7 @@ function App() {
               <Contact />
             </Element>
 
-            <Footer />
-
+            <Footer/>
             <Router>
               <Routes>
                 <Route
