@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -13,6 +13,12 @@ import Folder from './Components/Folders/Folders';
 import Login from './Components/Login/Login';
 import Logout from './Components/Login/Logout';
 import { Element } from "react-scroll";
+
+
+
+import {Route} from "react-router-dom";
+
+
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -56,14 +62,12 @@ function App() {
             </Element>
 
             <Footer/>
-            <Router basename="/">
-              <Routes>
-                <Route
-                  path="/#login"
-                  element={<Login setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />}
-                />
-              </Routes>
-            </Router>
+          
+              <Route>
+              <Route exact path="/login" render={(props) => (
+                <Login {...props} setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />
+              )} />              
+              </Route>
           </div>
         )}
       </header>
