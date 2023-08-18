@@ -5,6 +5,8 @@ import axios from "axios";
 import style from "./Contact.module.css";
 
 const Contact = ()=>{
+    const urlBack= "https://matiaspage.onrender.com"
+
     const [formData, setFormData] =useState({
         name:'',
         lastname: '',
@@ -62,7 +64,7 @@ const Contact = ()=>{
             default:
                 try {
                     Swal.showLoading();
-                    const submit = await axios.post("http://localhost:3001/contact",formData);
+                    const submit = await axios.post(`${urlBack}/contact`,formData);
                    
                     Swal.hideLoading();
                     if(submit.status === 200)

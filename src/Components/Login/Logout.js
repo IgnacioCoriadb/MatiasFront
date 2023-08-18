@@ -2,6 +2,8 @@ import axios from "axios";
 import Swal from 'sweetalert2';
 
 const Logout = ()=>{
+    const urlBack= "https://matiaspage.onrender.com"
+
     const handleLogout = async () => {
         const confirmed = await Swal.fire({
             title: "¿Estás seguro?",
@@ -17,7 +19,7 @@ const Logout = ()=>{
         if (confirmed.isConfirmed) {
             const token = localStorage.getItem("token");
             await axios.post(
-            "http://localhost:3001/logout",
+            `${urlBack}/logout`,
             {},
             {
                 headers: {

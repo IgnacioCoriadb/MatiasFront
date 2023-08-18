@@ -5,6 +5,8 @@ import Swal from 'sweetalert2';
 import UploadImage from "../Files/UploadFile";
 
 const Folder = ({isAuthenticated}) => {
+    const urlBack= "https://matiaspage.onrender.com"
+
     const [folders, setFolders] = useState([]);
     const token = localStorage.getItem('token');
     const [folderName, setFolderName] = useState("");
@@ -16,7 +18,7 @@ const Folder = ({isAuthenticated}) => {
 
     const allFolders = async()=>{
         const token = localStorage.getItem('token');
-       const result = await axios.get(`http://localhost:3001/folders/allFolders`,{
+       const result = await axios.get(`${urlBack}/folders/allFolders`,{
         headers: {
             'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${token}`, 
@@ -47,7 +49,7 @@ const Folder = ({isAuthenticated}) => {
         const folder = {subfolder:subfolder}
         try{
             Swal.showLoading();
-            const result = await axios.post("http://localhost:3001/folders/createFolder",folder,{
+            const result = await axios.post(`${urlBack}/folders/createFolder`,folder,{
                 headers: {
                     'Content-Type': 'application/json', 
                     'Authorization': `Bearer ${token}`, 
@@ -86,7 +88,7 @@ const Folder = ({isAuthenticated}) => {
                 cancelButtonColor: '#3085d6',
               });
             if(result.isConfirmed){
-                const deleteFolder = await axios.delete(`http://localhost:3001/folders/deleteFolder/${idDb}`,{
+                const deleteFolder = await axios.delete(`${urlBack}/folders/deleteFolder/${idDb}`,{
                     headers: {
                         'Content-Type': 'application/json', 
                         'Authorization': `Bearer ${token}`, 

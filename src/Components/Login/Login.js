@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 
 const Login = ({setIsAuthenticated,isAuthenticated}) => {
     const token = localStorage.getItem('token');
+    const urlBack= "https://matiaspage.onrender.com"
+
 
     const showLoginDialog = () => {
         const swalModal = Swal.fire({
@@ -38,16 +40,17 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
     const loginUser = async (username, password) => {
         const loginData = { username, password };
         try {
-            const response = await axios.post("http://localhost:3001/login", loginData);
+            const response = await axios.post(`${urlBack}/login`, loginData);
             const token = response.data.token;
             if (token) {
                 const { exp } = JSON.parse(atob(token.split('.')[1])); // Decodificar el token
                 if (Date.now() < exp * 1000) {
                     // Configurar un temporizador para eliminar el token cuando expire
                     const expiresIn = (exp * 1000) + (3 * 60 * 60 * 1000) - Date.now(); //tres horas
+
                     setTimeout(() => {
                         handleLogoutTime();
-                    }, Math.min(expiresIn, 20000));
+                    },expiresIn);
                   } 
 
                 localStorage.setItem('token', token);
@@ -101,7 +104,7 @@ const Login = ({setIsAuthenticated,isAuthenticated}) => {
   
         const token = localStorage.getItem("token");
         await axios.post(
-        "http://localhost:3001/logout",
+        `${urlBack}/logout`,
         {},
         {
             headers: {

@@ -6,6 +6,8 @@ import 'react-dropzone-uploader/dist/styles.css';
 import style from "./Files.module.css";
 
 const UploadFile = ({ folderName,modal }) => {
+  const urlBack= "https://matiaspage.onrender.com"
+
     const [selectedFiles, setSelectedFiles] = useState([]);
     const token = localStorage.getItem('token');
     const [files, setFiles] = useState([]);
@@ -38,7 +40,7 @@ const UploadFile = ({ folderName,modal }) => {
         Swal.showLoading();
 
         const response = await axios.post(
-          `http://localhost:3001/images/uploadImage/${folderName}`,
+          `${urlBack}/images/uploadImage/${folderName}`,
           formData,
           {
             headers: {

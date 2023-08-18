@@ -6,6 +6,8 @@ import Paginate from "../Pagination/Pagination";
 import styles from "./Portfolio.module.css"
 
 const Portfolio = ({isAuthenticated,setNavBarVisible})=>{
+    const urlBack= "https://matiaspage.onrender.com"
+
     const [imageFolder, setImageFolder] = useState(null);
     const [nameFolder, setNameFolder] = useState(null);
     const [modalOpen, setModalOpen] = useState(false);
@@ -26,7 +28,7 @@ const Portfolio = ({isAuthenticated,setNavBarVisible})=>{
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/images/allImage');
+        const response = await axios.get(`${urlBack}/images/allImage`);
         setImageFolder([...response.data]);
       } catch (error) {
         console.error("No se pudieron obtener las imagenes " + error);

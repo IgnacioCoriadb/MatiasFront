@@ -8,6 +8,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
 const Image = ({folder,modalOpen,setModalOpen,setNavBarVisible}) => {
+    const urlBack= "https://matiaspage.onrender.com"
+
     const [image, setImage] = useState([]);
     const [imageOpened, setImageOpened] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,7 +17,7 @@ const Image = ({folder,modalOpen,setModalOpen,setNavBarVisible}) => {
     const [currentImage, setCurrentImage] = useState(null);
 
     const allImages = async ()=>{
-        const result = await axios.get(`http://localhost:3001/images/allImage/${folder}`);
+        const result = await axios.get(`${urlBack}/images/allImage/${folder}`);
         const imageUrls = result.data.map(url => ({
             original: url.url,
             folderName: url.folderName,
@@ -52,7 +54,7 @@ const Image = ({folder,modalOpen,setModalOpen,setNavBarVisible}) => {
 
         if (confirm.isConfirmed) {
             try {
-                await axios.delete(`http://localhost:3001/images/deleteImage/${id}`, {
+                await axios.delete(`${urlBack}/images/deleteImage/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     },

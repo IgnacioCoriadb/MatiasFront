@@ -33,7 +33,7 @@ function App() {
         {isAuthenticated && token ? (
           <div>
             <Folder isAuthenticated={isAuthenticated} />
-            <Portfolio />
+            <Portfolio setNavBarVisible={setNavBarVisible} />
             <Logout></Logout>
           </div>
         ) : (
