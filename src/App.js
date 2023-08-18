@@ -59,7 +59,7 @@ function App() {
             <Router basename="/">
               <Routes>
                 <Route
-                  path="/login"
+                  path="/#login"
                   element={<Login setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />}
                 />
               </Routes>
