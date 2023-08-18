@@ -59,7 +59,7 @@ function App() {
             <Router>
               <Routes>
                 <Route
-                  path="/login"
+                  path="https://matiaspage.onrender.com/login"
                   element={<Login setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />}
                 />
               </Routes>
