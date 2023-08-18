@@ -56,7 +56,7 @@ function App() {
             </Element>
 
             <Footer/>
-            <Router>
+            <Router basename="/">
               <Routes>
                 <Route
                   path="/login"
