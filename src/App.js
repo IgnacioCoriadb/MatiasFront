@@ -16,7 +16,7 @@ import { Element } from "react-scroll";
 
 
 
-import {Route} from "react-router-dom";
+import {HashRouter as Router, Route} from "react-router-dom";
 
 
 
@@ -63,11 +63,11 @@ function App() {
 
             <Footer/>
           
-              <Route>
+              <Router>
               <Route exact path="/login" render={(props) => (
                 <Login {...props} setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />
               )} />              
-              </Route>
+              </Router>
           </div>
         )}
       </header>
