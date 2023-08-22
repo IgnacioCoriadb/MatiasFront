@@ -4,6 +4,8 @@ import { useEffect ,useState} from "react";
 import Image from "./AllImage";
 import Paginate from "../Pagination/Pagination";
 import styles from "./Portfolio.module.css"
+import { faCircleNotch    } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Portfolio = ({isAuthenticated,setNavBarVisible})=>{
     const urlBack= "https://matiaspage.onrender.com"
@@ -67,7 +69,10 @@ const Portfolio = ({isAuthenticated,setNavBarVisible})=>{
             />
           </div>
         </div>
-      )) : "Cargando"}
+      )) : <div className="loading-spinner">
+      <FontAwesomeIcon icon={faCircleNotch} spin size="4x" />
+      <div className="loading-text">CARGANDO PORTFOLIO</div>
+    </div>}
     </div>
     {nameFolder !== null && (
       <Image folder={nameFolder} modalOpen={modalOpen} setModalOpen={setModalOpen} setNavBarVisible={setNavBarVisible} />   
