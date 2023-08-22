@@ -58,6 +58,8 @@ const UploadFile = ({ folderName,modal }) => {
           showConfirmButton: false,
           timer: 1500,
         });
+        setFiles([]);
+
         // console.log("Upload successful:", response.data);
       } else {
         Swal.hideLoading();
