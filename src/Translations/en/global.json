@@ -1,0 +1,20 @@
+{
+    "navbar": {
+        "home": "Home",
+        "aboutMe": "About Me",
+        "portfolio": "Portfolio",
+        "contact": "Contact"
+    },
+    "aboutMe": {
+        "text": "My work focuses on capturing energy and time through painting and drawing, attempting to mimic nature across its various scales. Reference points include the evolution of organisms, chaos, and the movements we perceive through our senses and science, yet cannot fully grasp – such as the rhythms within our bodies and the universe. Graphic elements intertwine, giving rise to organic cartographies that morphologically resemble histological records. Supports become saturated with visual information, causing scales and directions to blur. To me, painting serves as a constant metaphor for the entropy in which we exist and operate. The creative act is an ongoing search for meaning, an attempt to decipher the enigmatic relationships of existence.The images I produce emerge after a process of frenzied and obsessive work, involving the layering of paint that tends to form either lines or distinct planes. In terms of materials, I oscillate between traditional painting and drawing mediums like acrylic, oil, watercolor, ink, and tempera, combining them with industrially sourced paints, marble dust, and pure pigments to enhance material richness. Beyond my pictorial production, I'm interested in creating graphic and illustrative pieces, incorporating digital media and adapting my aesthetic to various purposes."
+    },
+    "contact":{
+        "contactUs": "Contact Us",
+        "name": "Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "message": "Enter your message for us here",
+        "submit": "Submit"
+
+    }
+}

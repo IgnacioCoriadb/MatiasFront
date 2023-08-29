@@ -1,8 +1,10 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Link } from "react-scroll";
 import style from "./Footer.module.css";
+import { useTranslation } from 'react-i18next';
 
 const Footer = ()=>{
+    const [t] = useTranslation("global");
 
     return (
         <div>
@@ -23,7 +25,7 @@ const Footer = ()=>{
                             duration={500}
                             className={style['hand-cursor-link']}
                         >
-                            Home
+                        {t("navbar.home")}
                         </Link>
                     </li>
                     <li className="list-inline-item"> 
@@ -35,7 +37,7 @@ const Footer = ()=>{
                             duration={500}
                             className={style['hand-cursor-link']}
                         >
-                        About
+                        {t("navbar.portfolio")}
                         </Link>
                     </li>
                     <li className="list-inline-item">
@@ -47,7 +49,7 @@ const Footer = ()=>{
                             duration={500}
                             className={style['hand-cursor-link']}
                         >
-                        Portfolio
+                        {t("navbar.aboutMe")}
                         </Link>
                     </li>
                     <li className="list-inline-item">
@@ -59,7 +61,7 @@ const Footer = ()=>{
                             duration={500}
                             className={style['hand-cursor-link']}
                         >
-                        Contact
+                        {t("navbar.contact")}
                         </Link>
                     </li>
                 </ul>

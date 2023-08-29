@@ -3,8 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-scroll";
 import style from "./Navbar.module.css";
+import { useTranslation } from 'react-i18next';
+import argentina from "../../Images/argentina.png";
+import english from "../../Images/english.png";
 
 const NavBar = ({navBarVisible}) => {
+    const [t,il8n] = useTranslation("global");
 
     useEffect(()=>{
     },[navBarVisible])
@@ -46,7 +50,7 @@ const NavBar = ({navBarVisible}) => {
                                     duration={500}
                                     className={style.link}
                                 >
-                                    Home
+                                {t("navbar.home")}
                                 </Link>
                             </li>
                             <li className="nav-item">
@@ -58,7 +62,7 @@ const NavBar = ({navBarVisible}) => {
                                     duration={500}
                                     className={style.link}
                                 >
-                                    Portfolio
+                                {t("navbar.portfolio")}
                                 </Link>
                             </li>
                             <li className="nav-item">
@@ -70,7 +74,7 @@ const NavBar = ({navBarVisible}) => {
                                     duration={500}
                                     className={style.link}
                                 >
-                                    About me
+                                {t("navbar.aboutMe")}
                                 </Link>
                             </li>
                             <li className="nav-item">
@@ -82,8 +86,16 @@ const NavBar = ({navBarVisible}) => {
                                     duration={500}
                                     className={style.link}
                                 >
-                                    Contact
+                                {t("navbar.contact")}
                                 </Link>
+                            </li>
+                            <li className="nav-item active">
+                                <div className="dropdown">
+                                    <div className="dropdown" aria-labelledby="dropdownMenuButton">
+                                        <img src={argentina} alt="argentina" onClick={() => il8n.changeLanguage("es")} className={style.flag}></img>
+                                        <img src={english} alt="english" onClick={() => il8n.changeLanguage("en")} className={style.flag}></img>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </div>

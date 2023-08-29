@@ -18,7 +18,11 @@
     margin-top: 0.563rem;
 }
 
-
+.flag{
+    width: 40px;
+    margin: 5px;
+    cursor: pointer;
+}
 
  
   

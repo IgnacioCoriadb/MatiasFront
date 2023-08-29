@@ -3,9 +3,11 @@ import {useState} from "react";
 import Swal from 'sweetalert2';
 import axios from "axios";
 import style from "./Contact.module.css";
+import { useTranslation } from 'react-i18next';
 
 const Contact = ()=>{
     const urlBack= "https://matiaspage.onrender.com"
+    const [t] = useTranslation("global");
 
     const [formData, setFormData] =useState({
         name:'',
@@ -108,7 +110,7 @@ const Contact = ()=>{
                 <div className="well well-sm">
                     <form className="form-horizontal"  onSubmit={handleSubmit} method="post">
                         <fieldset>
-                            <legend className={`text-center  ${style['bigicon']}`}>Contact us</legend>
+                            <legend className={`text-center  ${style['bigicon']}`}>{t("contact.contactUs")}</legend>
                             <div className="form-group">
                                 <span className="col-md-1 col-md-offset-2 text-center"><i className={`fa fa-user ${style['bigicon']}`}></i></span>
                                 <div className="col-md-10 offset-md-1">
@@ -116,7 +118,7 @@ const Contact = ()=>{
                                         id="fname"
                                         name="name"
                                         type="text"
-                                        placeholder="First Name"
+                                        placeholder={t("contact.name")}
                                         value={formData.name}
                                         onChange={handleChange}
                                         className="form-control mb-3"
@@ -130,7 +132,7 @@ const Contact = ()=>{
                                         id="lname"
                                         name="lastname"
                                         type="text"
-                                        placeholder="Last Name"
+                                        placeholder={t("contact.lastName")}
                                         value={formData.lastname}
                                         onChange={handleChange}
                                         className="form-control mb-3"
@@ -144,7 +146,7 @@ const Contact = ()=>{
                                         id="email"
                                         name="email"
                                         type="text"
-                                        placeholder="Email Address"
+                                        placeholder={t("contact.email")}
                                         value={formData.email}
                                         onChange={handleChange}
                                         className="form-control mb-3"
@@ -160,14 +162,14 @@ const Contact = ()=>{
                                         name="message"
                                         value={formData.message}
                                         onChange={handleChange}
-                                        placeholder="Enter your massage for us here."
+                                        placeholder={t("contact.message")}
                                         rows="7">
                                     </textarea>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <div className="col-md-12 text-center">
-                                    <button type="submit" className="btn btn-primary bg-dark">Submit</button>
+                                    <button type="submit" className="btn btn-primary bg-dark">{t("contact.submit")}</button>
                                 </div>
                             </div>
                         </fieldset>
