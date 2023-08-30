@@ -6,8 +6,8 @@ import 'react-dropzone-uploader/dist/styles.css';
 import style from "./Files.module.css";
 
 const UploadFile = ({ folderName,modal }) => {
-  // const urlBack= "https://matiaspage.onrender.com"
-  const urlBack= "http://localhost:3001"
+  const urlBack= "https://matiaspage.onrender.com"
+  // const urlBack= "http://localhost:3001"
 
     const [selectedFiles, setSelectedFiles] = useState([]);
     const token = localStorage.getItem('token');
