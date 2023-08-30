@@ -23,7 +23,7 @@
   justify-content: center; 
   padding: 20px;
   position: relative;
-  max-width: 90%; 
+  max-width: 80%; 
   margin: 20px auto 0; 
 }
 
@@ -46,7 +46,7 @@
 
 
 .title{
-  margin-top: 0px;
+  margin: 0px !important;
   color: #fff;
 }
 
@@ -65,3 +65,4 @@
   cursor: pointer;
   transition: color 0.2s;
 }
+

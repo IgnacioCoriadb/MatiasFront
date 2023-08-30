@@ -8,13 +8,16 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
 const Image = ({folder,modalOpen,setModalOpen,setNavBarVisible}) => {
-    const urlBack= "https://matiaspage.onrender.com"
+    // const urlBack= "https://matiaspage.onrender.com"
+    const urlBack= "http://localhost:3001"
 
     const [image, setImage] = useState([]);
     const [imageOpened, setImageOpened] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
     const token = localStorage.getItem('token');
     const [currentImage, setCurrentImage] = useState(null);
+    const [folderData, setFolderData] = useState(null);
+
 
     const allImages = async ()=>{
         const result = await axios.get(`${urlBack}/images/allImage/${folder}`);
@@ -23,19 +26,21 @@ const Image = ({folder,modalOpen,setModalOpen,setNavBarVisible}) => {
             folderName: url.folderName,
             id: url.id
         }));
+        const folders = await axios.get(`http://localhost:3001/folders/folder/${folder}`);
+        setFolderData(folders.data)
         setImage(imageUrls);
     }
-    
+
     const closeModal = () => {
         setModalOpen(false);
-    setImageOpened(false); 
-    setCurrentImage(null);
-    setNavBarVisible(true);
+        setImageOpened(false);
+        setCurrentImage(null);
+        setNavBarVisible(true);
     };
-    
+
     const handleBackgroundClick = (e) => {
     if (!e.target.closest(`.${styles['image-modal-content']}`)) {
-            setImageOpened(false); 
+            setImageOpened(false);
             closeModal();
         }
     };
@@ -90,7 +95,7 @@ const Image = ({folder,modalOpen,setModalOpen,setNavBarVisible}) => {
         allImages();
         if (imageOpened) {
             if (currentIndex >= 0 && currentIndex < image.length) {
-                setCurrentIndex(currentIndex); 
+                setCurrentIndex(currentIndex);
             }
         }
     }, [folder, imageOpened, currentIndex]);
@@ -105,11 +110,21 @@ const Image = ({folder,modalOpen,setModalOpen,setNavBarVisible}) => {
                         </button>
                         {image.length > 0 && currentIndex >= 0 && currentIndex < image.length && (
                             <>
-                                <h1 className={styles['title']}>{image[currentIndex].folderName}</h1>
                                 {token && (
-                                    <button className="btn btn-danger mt-2" onClick={() => deleteImage(image[currentIndex].id)}>Eliminar</button>
+                                    <button className={`btn btn-danger ${styles['delete-button']}`} onClick={() => deleteImage(image[currentIndex].id)}>Eliminar</button>
                                 )}
-                                <ImageGallery items={image} currentIndex={currentIndex} onSlide={handleSlide} />
+                                {folderData ? folderData.map((f,key) => (
+                                    <div key={key} className={styles.folderItem}> 
+                                     <h1 className={styles['title']}>{f.folderName}</h1>
+                                        <p className={styles['title']}>{f.description}</p>
+                                        <p className={styles['title']}>{f.measurements}</p>
+                                        <p className={styles['title']}>{f.year}</p>
+                                    </div>
+                                )) : null}
+
+                              
+                                <ImageGallery items={image} currentIndex={currentIndex} onSlide={handleSlide}  />
+                             
                             </>
                         )}
                     </div>

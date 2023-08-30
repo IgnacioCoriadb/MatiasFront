@@ -5,7 +5,8 @@ import Swal from 'sweetalert2';
 import UploadImage from "../Files/UploadFile";
 
 const Folder = ({isAuthenticated}) => {
-    const urlBack= "https://matiaspage.onrender.com"
+    // const urlBack= "https://matiaspage.onrender.com"
+  const urlBack= "http://localhost:3001"
 
     const [folders, setFolders] = useState([]);
     const token = localStorage.getItem('token');
@@ -27,26 +28,37 @@ const Folder = ({isAuthenticated}) => {
        setFolders([...result.data])
     }
 
-    const newFolder = async()=>{
-        const { value: subfolder } = await Swal.fire({
-            title: 'Insertar dato',
-            input: 'text',
-            inputLabel: 'Nuevo dato:',
-            inputPlaceholder: 'Escribe aquí...',
-            showCancelButton: true,
-            inputValidator: (value) => {
-              if (!value) {
-                return 'Debes ingresar un valor';
-              }
-            } 
-        })
-        if (subfolder) {
-            insertNewFolder(subfolder);
+    const newFolder = async () => {
+        const { value: formValues } = await Swal.fire({
+          title: 'Insertar datos',
+          html:
+            '<input id="subfolder" class="swal2-input" placeholder="Nombre de la carpeta">' +
+            '<input id="description" class="swal2-input" placeholder="Descripción">' +
+            '<input id="measurements" class="swal2-input" placeholder="Medidas">' +
+            '<input id="year" class="swal2-input" placeholder="Año">',
+          focusConfirm: false,
+          preConfirm: () => {
+            return [
+              document.getElementById('subfolder').value,
+              document.getElementById('description').value,
+              document.getElementById('measurements').value,
+              document.getElementById('year').value
+            ];
+          }
+        });
+      
+        if (formValues) {
+          const subfolder = formValues[0];
+          const description = formValues[1];
+          const measurements = formValues[2];
+          const year = formValues[3];      
+          insertNewFolder(subfolder, description, measurements, year);
         }
-    }
+      };
+      
     
-    const insertNewFolder =async (subfolder)=>{
-        const folder = {subfolder:subfolder}
+    const insertNewFolder =async (subfolder,description, measurements, year)=>{
+        const folder = {subfolder:subfolder,description, measurements, year}
         try{
             Swal.showLoading();
             const result = await axios.post(`${urlBack}/folders/createFolder`,folder,{
