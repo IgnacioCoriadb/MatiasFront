@@ -26,7 +26,7 @@ const Image = ({folder,modalOpen,setModalOpen,setNavBarVisible}) => {
             folderName: url.folderName,
             id: url.id
         }));
-        const folders = await axios.get(`http://localhost:3001/folders/folder/${folder}`);
+        const folders = await axios.get(`${urlBack}/folders/folder/${folder}`);
         setFolderData(folders.data)
         setImage(imageUrls);
     }
