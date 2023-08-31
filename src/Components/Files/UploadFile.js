@@ -30,7 +30,7 @@ const UploadFile = ({ folderName,modal }) => {
         });
         return;
         }
-    
+
     const formData = new FormData();
     for (const file of selectedFiles) {
       formData.append("images", file);
