@@ -6,7 +6,8 @@ import style from "./Contact.module.css";
 import { useTranslation } from 'react-i18next';
 
 const Contact = ()=>{
-    const urlBack= "https://matiaspage.onrender.com"
+    // const urlBack= "https://matiaspage.onrender.com"
+    const urlBack="http://localhost:3001";
     const [t] = useTranslation("global");
 
     const [formData, setFormData] =useState({

@@ -8,8 +8,8 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 
 const Image = ({folder,modalOpen,setModalOpen,setNavBarVisible}) => {
-    const urlBack= "https://matiaspage.onrender.com"
-    // const urlBack= "http://localhost:3001"
+    // const urlBack= "https://matiaspage.onrender.com"
+    const urlBack="http://localhost:3001";
 
     const [image, setImage] = useState([]);
     const [imageOpened, setImageOpened] = useState(false);
