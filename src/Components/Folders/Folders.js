@@ -6,7 +6,7 @@ import UploadImage from "../Files/UploadFile";
 
 const Folder = ({isAuthenticated}) => {
     // const urlBack= "https://matiaspage.onrender.com"
-    const urlBack="https://vps-3582101-x.dattaweb.com:3001";
+    const urlBack="http://vps-3582101-x.dattaweb.com:3001";
 
 
     const [folders, setFolders] = useState([]);

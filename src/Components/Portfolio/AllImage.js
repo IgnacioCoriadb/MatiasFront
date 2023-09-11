@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 const Image = ({folder,modalOpen,setModalOpen,setNavBarVisible}) => {
     // const urlBack= "https://matiaspage.onrender.com"
-    const urlBack="https://vps-3582101-x.dattaweb.com:3001";
+    const urlBack="http://vps-3582101-x.dattaweb.com:3001";
 
     const [image, setImage] = useState([]);
     const [imageOpened, setImageOpened] = useState(false);
