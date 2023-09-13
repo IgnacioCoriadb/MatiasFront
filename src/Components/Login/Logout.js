@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 const Logout = ()=>{
     // const urlBack= "https://matiaspage.onrender.com"
-    const urlBack="http://vps-3582101-x.dattaweb.com:3001";
+    const urlBack="https://vps-3582101-x.dattaweb.com";
 
 
     const handleLogout = async () => {
