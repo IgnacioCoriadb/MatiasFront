@@ -7,7 +7,7 @@ import style from "./Files.module.css";
 
 const UploadFile = ({ folderName,modal }) => {
   // const urlBack= "https://matiaspage.onrender.com"
-  const urlBack="http://vps-3582101-x.dattaweb.com:3001";
+  const urlBack="https://vps-3582101-x.dattaweb.com";
 
 
     const [selectedFiles, setSelectedFiles] = useState([]);
