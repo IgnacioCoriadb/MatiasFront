@@ -7,30 +7,28 @@ import style from "./Files.module.css";
 
 const UploadFile = ({ folderName,modal }) => {
   // const urlBack= "https://matiaspage.onrender.com"
-  const urlBack="http://200.58.105.159:3001";
+  const urlBack="https://vps-3582101-x.dattaweb.com";
 
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const token = localStorage.getItem('token');
+  const [files, setFiles] = useState([]);
 
-    const [selectedFiles, setSelectedFiles] = useState([]);
-    const token = localStorage.getItem('token');
-    const [files, setFiles] = useState([]);
+  const handleDrop = (acceptedFiles) => {
+    setSelectedFiles(acceptedFiles);
+    setFiles(acceptedFiles);
+  };
 
-
-    const handleDrop = (acceptedFiles) => {
-        setSelectedFiles(acceptedFiles);
-        setFiles(acceptedFiles);
-    };
-
-    const handleUpload = async () => {
-        if (!selectedFiles || selectedFiles.length === 0) {
-        Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Error al enviar la solicitud',
-            text: "No se han seleccionado imágenes.",
-            showConfirmButton: true,
-        });
-        return;
-        }
+  const handleUpload = async () => {
+    if (!selectedFiles || selectedFiles.length === 0) {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Error al enviar la solicitud',
+        text: "No se han seleccionado imágenes.",
+        showConfirmButton: true,
+    });
+    return;
+    }
 
     const formData = new FormData();
     for (const file of selectedFiles) {
