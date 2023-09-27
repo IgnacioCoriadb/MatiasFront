@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 const Logout = ()=>{
     // const urlBack= "https://matiaspage.onrender.com"
-    const urlBack="http://longoperrig.com.ar:3001";
+    const urlBack="https://longoperrig.com.ar/api";
 
     const handleLogout = async () => {
         const confirmed = await Swal.fire({

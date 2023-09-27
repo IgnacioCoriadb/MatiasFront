@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 const Login = ({setIsAuthenticated,isAuthenticated}) => {
     const token = localStorage.getItem('token');
     // const urlBack= "https://matiaspage.onrender.com"
-    const urlBack="http://longoperrig.com.ar:3001";
+    const urlBack="https://longoperrig.com.ar/api";
 
     const showLoginDialog = () => {
         const swalModal = Swal.fire({

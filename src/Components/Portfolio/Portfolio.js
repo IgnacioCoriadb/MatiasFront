@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Portfolio = ({isAuthenticated,setNavBarVisible})=>{
     // const urlBack= "https://matiaspage.onrender.com"
-    const urlBack="http://longoperrig.com.ar:3001";
+    const urlBack="https://longoperrig.com.ar/api";
 
     const [imageFolder, setImageFolder] = useState(null);
     const [nameFolder, setNameFolder] = useState(null);
