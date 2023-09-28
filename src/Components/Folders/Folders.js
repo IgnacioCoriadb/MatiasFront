@@ -6,7 +6,7 @@ import UploadImage from "../Files/UploadFile";
 
 const Folder = ({isAuthenticated}) => {
     // const urlBack= "https://matiaspage.onrender.com"
-    const urlBack="https://longoperrig.com.ar/api";
+    const urlBack="https://www.longoperrig.com.ar/api";
 
     const [folders, setFolders] = useState([]);
     const token = localStorage.getItem('token');

@@ -7,7 +7,7 @@ import style from "./Files.module.css";
 
 const UploadFile = ({ folderName,modal }) => {
   // const urlBack= "https://matiaspage.onrender.com"
-  const urlBack="https://longoperrig.com.ar/api";
+  const urlBack="https://www.longoperrig.com.ar/api";
 
   const [selectedFiles, setSelectedFiles] = useState([]);
   const token = localStorage.getItem('token');

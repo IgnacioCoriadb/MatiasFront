@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 const Contact = ()=>{
     // const urlBack= "https://matiaspage.onrender.com"
-    const urlBack="https://longoperrig.com.ar/api";
+    const urlBack="https://www.longoperrig.com.ar/api";
     const [t] = useTranslation("global");
 
     const [formData, setFormData] =useState({

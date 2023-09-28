@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 const Image = ({folder,modalOpen,setModalOpen,setNavBarVisible}) => {
     // const urlBack= "https://matiaspage.onrender.com"
-    const urlBack="https://longoperrig.com.ar/api";
+    const urlBack="https://www.longoperrig.com.ar/api";
 
     const [image, setImage] = useState([]);
     const [imageOpened, setImageOpened] = useState(false);
